@@ -60,13 +60,18 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    bcrypt (3.1.16)
     bootsnap (1.7.7)
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
+    choice (0.2.0)
+    coderay (1.1.3)
     concurrent-ruby (1.1.9)
     crass (1.0.6)
     erubi (1.10.0)
+    fast_jsonapi (1.5)
+      activesupport (>= 4.2)
     ffi (1.15.3)
     globalid (0.5.2)
       activesupport (>= 5.0)
@@ -89,10 +94,15 @@ GEM
     nokogiri (1.12.3-x86_64-linux)
       racc (~> 1.4)
     pg (1.2.3)
+    pry (0.14.1)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
     puma (5.4.0)
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.1.4.1)
@@ -113,6 +123,11 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-erd (1.6.1)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.4.1)
       loofah (~> 2.3)
     railties (6.1.4.1)
@@ -125,6 +140,9 @@ GEM
     rb-fsevent (0.11.0)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
+    rexml (3.2.5)
+    ruby-graphviz (1.2.5)
+      rexml
     spring (2.1.1)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -145,12 +163,17 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
+  fast_jsonapi
   listen (~> 3.3)
   pg (~> 1.1)
+  pry
   puma (~> 5.0)
+  rack-cors
   rails (~> 6.1.4)
+  rails-erd
   spring
   tzinfo-data
 
