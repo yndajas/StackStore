@@ -7,4 +7,6 @@ class UsersController < ApplicationController
       render json: { user: { id: user.id, email: user.email, token: user.token } }
     end
   end
+
+  # add update/delete?
 end
