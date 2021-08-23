@@ -3,4 +3,8 @@ class User < ApplicationRecord
   has_many :questions
   has_many :question_tags, through: :questions
   has_secure_password
+
+  def questions
+    Question.find_by(user_id: id)
+  end
 end
