@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_22_031704) do
+ActiveRecord::Schema.define(version: 2021_08_23_182543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_08_22_031704) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id", "stack_id"], name: "index_answers_on_user_id_and_stack_id", unique: true
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(version: 2021_08_22_031704) do
     t.bigint "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id", "tag_id"], name: "index_question_tags_on_question_id_and_tag_id", unique: true
     t.index ["question_id"], name: "index_question_tags_on_question_id"
     t.index ["tag_id"], name: "index_question_tags_on_tag_id"
   end
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 2021_08_22_031704) do
     t.text "notes"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id", "stack_id"], name: "index_questions_on_user_id_and_stack_id", unique: true
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
@@ -59,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_08_22_031704) do
     t.string "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["text"], name: "index_tags_on_text", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -67,6 +71,7 @@ ActiveRecord::Schema.define(version: 2021_08_22_031704) do
     t.string "token"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "answers", "questions"
