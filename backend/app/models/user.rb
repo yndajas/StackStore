@@ -11,7 +11,7 @@ class User < ApplicationRecord
   end
 
   def tags
-    question_tags.collect { |question_tag| question_tag.tag }.uniq
+    question_tags.collect(&:tag).uniq
   end
 
   def questions_by_tag(tag)
