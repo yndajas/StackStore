@@ -12,6 +12,6 @@ Rails.application.routes.draw do
   get 'users/:user_id/tags' => 'tags#index'
   get 'users/:user_id/tags/:tag_slug' => 'tags#show'
 
-  post 'users/:user_id/question-tags' => 'question_tags#create'
-  delete 'users/:user_id/question-tags/:question_tag_id' => 'question_tags#destroy'
+  post 'users/:user_id/questions/:question_id/tags' => 'question_tags#create'
+  delete 'users/:user_id/questions/:question_id/tags/:questiom_tag_id' => 'question_tags#destroy'
 end
