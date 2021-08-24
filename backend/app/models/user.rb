@@ -7,6 +7,16 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
 
   def questions
-    Question.find_by(user_id: id)
+    Question.where(user_id: id)
+  end
+
+  def tags
+    question_tags.collect { |question_tag| question_tag.tag }.uniq
+  end
+
+  def questions_by_tag(tag)
+    questions.collect do |question|
+      question if question.tags.include?(tag)
+    end
   end
 end
