@@ -9,6 +9,6 @@ class Tag < ApplicationRecord
   end
 
   def self.find_by_slug(slug)
-    Tag.all.find { |tag| tag.slug == slug }
+    all.find { |tag| tag.slug == slug }
   end
 end
