@@ -4,21 +4,11 @@ class Tag < ApplicationRecord
 
   validates :text, uniqueness: true
 
-  # module Slugifiable
-  #     module InstanceMethods
-  #         def slug
-  #             Slugifiable::slugify(self.try(:name) || self.try(:title))
-  #         end
-  #     end
+  def slug
+    text.downcase.gsub(' ', '-').gsub(/[^\w-]/, '').gsub(/-+/, '-')
+  end
 
-  #     module ClassMethods
-  #         def find_by_slug(slug)
-  #             self.all.find { |instance| instance.slug == slug.downcase }
-  #         end
-  #     end
-
-  #     def self.slugify(string)
-  #         string.downcase.gsub(' ', '-').gsub(/[^\w-]/, '').gsub(/\-+/, '-')
-  #     end
-  # end
+  def self.find_by_slug(slug)
+    Tag.all.find { |tag| tag.slug == slug }
+  end
 end
