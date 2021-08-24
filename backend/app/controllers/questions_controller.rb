@@ -4,6 +4,7 @@ class QuestionsController < ApplicationController
   def index
     user = User.find(params[:user_id])
     questions = user.questions
+
     render json: QuestionSerializer.new(questions)
   end
 
@@ -21,6 +22,7 @@ class QuestionsController < ApplicationController
 
     serialized_question_hash = QuestionSerializer.new(question).serializable_hash
     serialized_question_hash['new'] = new_question
+
     render json: serialized_question_hash.to_json
   end
 
@@ -38,6 +40,7 @@ class QuestionsController < ApplicationController
     Answer.where(question_id: question.id).destroy_all
     QuestionTag.where(question_id: question.id).destroy_all
     question.destroy
+
     render json: { error: 'Question successfully deleted' }, status: 200
   end
 
