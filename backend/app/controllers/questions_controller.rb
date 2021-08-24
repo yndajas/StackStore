@@ -9,11 +9,9 @@ class QuestionsController < ApplicationController
 
   def show
     question = Question.find_by(user_id: params[:user_id], id: params[:question_id])
-    if question
-      render json: QuestionSerializer.new(question)
-    else
-      render json: { error: "Question with ID #{params[:question_id]} not found for current user" }, status: 404
-    end
+    render_error_if_question_not_found
+
+    render json: QuestionSerializer.new(question)
   end
 
   def create
@@ -28,10 +26,26 @@ class QuestionsController < ApplicationController
 
   def update
     question = Question.find(params[:question_id])
+    render_error_if_question_not_found
     question.update_from_params(params)
 
     render json: QuestionSerializer.new(question)
   end
 
-  # add delete?
+  def destroy
+    question = Question.find(params[:question_id])
+    render_error_if_question_not_found
+    Answer.where(question_id: question.id).destroy_all
+    QuestionTag.where(question_id: question.id).destroy_all
+    question.destroy
+    render json: { error: 'Question successfully deleted' }, status: 200
+  end
+
+  private
+
+  def render_error_if_question_not_found(question)
+    if question
+      render json: { error: "Question with ID #{params[:question_id]} not found for current user" }, status: 404
+    end
+  end
 end
