@@ -4,6 +4,8 @@ class Tag < ApplicationRecord
 
   validates :text, uniqueness: true
 
+  # validate for presence/length of attributes
+
   def slug
     text.downcase.gsub(' ', '-').gsub(/[^\w-]/, '').gsub(/-+/, '-')
   end
