@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_secure_password
 
   validates :email, uniqueness: true
+  validates :email, length: { minimum: 1 }, presence: true
+  validates :password_digest, length: { minimum: 1 }, presence: true
 
   def questions
     Question.where(user_id: id)

@@ -2,9 +2,10 @@ class Answer < ApplicationRecord
   belongs_to :user
   belongs_to :question
 
-  validates :user_id, uniqueness: { scope: :stack_id }
-
-  # validate for presence/length of attributes
+  validates :user_id, uniqueness: { scope: :stack_id }, length: { minimum: 1 }, presence: true
+  validates :question_id, length: { minimum: 1 }, presence: true
+  validates :stack_id, length: { minimum: 1 }, presence: true
+  validates :body, length: { minimum: 1 }, presence: true
 
   def self.create_or_update_from_hash_and_question(hash, question)
     answer = find_or_initialize_by(user_id: question.user_id, stack_id: hash[:stack_id])

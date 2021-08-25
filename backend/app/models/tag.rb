@@ -2,9 +2,7 @@ class Tag < ApplicationRecord
   has_many :question_tags
   has_many :questions, through: :question_tags
 
-  validates :text, uniqueness: true
-
-  # validate for presence/length of attributes
+  validates :text, uniqueness: true, length: { minimum: 1 }, presence: true
 
   def slug
     text.downcase.gsub(' ', '-').gsub(/[^\w-]/, '').gsub(/-+/, '-')

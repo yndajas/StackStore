@@ -4,9 +4,10 @@ class Question < ApplicationRecord
   has_many :question_tags
   has_many :tags, through: :question_tags
 
-  validates :user_id, uniqueness: { scope: :stack_id }
-
-  # validate for presence/length of attributes
+  validates :user_id, uniqueness: { scope: :stack_id }, length: { minimum: 1 }, presence: true
+  validates :stack_id, length: { minimum: 1 }, presence: true
+  validates :title, length: { minimum: 1 }, presence: true
+  validates :body, length: { minimum: 1 }, presence: true
 
   def add_or_update_attributes_from_params(params)
     %w[score title body stack_created stack_updated notes].each do |attribute|
