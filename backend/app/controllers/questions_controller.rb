@@ -1,22 +1,21 @@
 class QuestionsController < ApplicationController
-  before_action :render_error_if_user_mismatch
+  before_action :check_and_set_user
 
   def index
-    user = User.find(params[:user_id])
-    questions = user.questions
+    questions = @user.questions
 
     render json: QuestionSerializer.new(questions)
   end
 
   def show
-    question = Question.find_by(user_id: params[:user_id], id: params[:question_id])
-    render_error_if_record_not_found(question)
+    set_question(params[:question_id])
+    render_error_if_record_not_found(@question)
 
-    render json: QuestionSerializer.new(question)
+    render json: QuestionSerializer.new(@question)
   end
 
   def create
-    question = Question.find_or_initialize_by(user_id: params[:user_id], stack_id: params[:stack_id])
+    question = @user.questions.find_or_initialize_by(stack_id: params[:stack_id])
     new_question = question.new_record?
     question.add_or_update_attributes_from_params(params) if new_question
 
@@ -28,20 +27,26 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    question = Question.find(params[:question_id])
-    render_error_if_record_not_found(question)
-    question.add_or_update_attributes_from_params(params)
+    set_question(params[:question_id])
+    render_error_if_record_not_found(@question)
+    @question.add_or_update_attributes_from_params(params)
 
-    render json: QuestionSerializer.new(question)
+    render json: QuestionSerializer.new(@question)
   end
 
   def destroy
-    question = Question.find(params[:question_id])
-    render_error_if_record_not_found(question)
-    question.answers.destroy_all
-    question.question_tags.destroy_all
-    question.destroy
+    set_question(params[:question_id])
+    render_error_if_record_not_found(@question)
+    @question.answers.destroy_all
+    @question.question_tags.destroy_all
+    @question.destroy
 
     render json: { error: 'Question successfully deleted' }, status: 200
+  end
+
+  private
+
+  def set_question(question_id)
+    @question = @user.questions.find(question_id)
   end
 end
