@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :check_and_set_user
+  before_action :set_question, except: %i[index create]
 
   def index
     questions = @user.questions
@@ -8,7 +9,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    set_question(params[:question_id])
     render_error_if_record_not_found(@question)
 
     render json: QuestionSerializer.new(@question)
@@ -27,7 +27,6 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    set_question(params[:question_id])
     render_error_if_record_not_found(@question)
     @question.add_or_update_attributes_from_params(params)
 
@@ -35,7 +34,6 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    set_question(params[:question_id])
     render_error_if_record_not_found(@question)
     @question.answers.destroy_all
     @question.question_tags.destroy_all
@@ -46,7 +44,7 @@ class QuestionsController < ApplicationController
 
   private
 
-  def set_question(question_id)
-    @question = @user.questions.find(question_id)
+  def set_question
+    @question = @user.questions.find(params[:question_id])
   end
 end
