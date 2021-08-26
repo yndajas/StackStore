@@ -3,15 +3,12 @@ Rails.application.routes.draw do
 
   post 'users' => 'users#create'
 
-  get 'users/:user_id/questions' => 'questions#index'
-  get 'users/:user_id/questions/:question_id' => 'questions#show'
-  post 'users/:user_id/questions' => 'questions#create'
-  patch 'users/:user_id/questions/:question_id' => 'questions#update'
-  delete 'users/:user_id/questions/:question_id' => 'questions#destroy'
+  scope 'users/:user_id' do
+    resources :questions, except: %i[new edit], param: :question_id
+    resources :tags, only: %i[index show], param: :tag_slug
 
-  get 'users/:user_id/tags' => 'tags#index'
-  get 'users/:user_id/tags/:tag_slug' => 'tags#show'
-
-  post 'users/:user_id/questions/:question_id/tags' => 'question_tags#create'
-  delete 'users/:user_id/questions/:question_id/tags/:questiom_tag_id' => 'question_tags#destroy'
+    scope 'questions/:question_id' do
+      resources :tags, only: %i[create destroy], controller: 'question_tags', param: :question_tag_id
+    end
+  end
 end
