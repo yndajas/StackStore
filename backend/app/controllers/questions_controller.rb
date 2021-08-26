@@ -9,8 +9,6 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    render_error_if_record_not_found(@question)
-
     render json: QuestionSerializer.new(@question)
   end
 
@@ -27,14 +25,12 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    render_error_if_record_not_found(@question)
     @question.add_or_update_attributes_from_params(params)
 
     render json: QuestionSerializer.new(@question)
   end
 
   def destroy
-    render_error_if_record_not_found(@question)
     @question.answers.destroy_all
     @question.question_tags.destroy_all
     @question.destroy
@@ -46,5 +42,6 @@ class QuestionsController < ApplicationController
 
   def set_question
     @question = @user.questions.find(params[:question_id])
+    render_error_if_record_not_found(@question)
   end
 end
