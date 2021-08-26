@@ -1,7 +1,11 @@
 class QuestionTagsController < ApplicationController
+  before_action :check_and_set_user
+
   def create
     tag = Tag.find_or_create_by(text: params[:text].lower)
-    question_tag = Tag.find_or_initialize_by(question_id: params[:question_id], tag_id: tag.id)
+    question = @user.questions.find(params[:question_id])
+    render_error_if_record_not_found(question)
+    question_tag = Tag.find_or_initialize_by(question_id: question.id, tag_id: tag.id)
     new_question_tag = question_tag.new_record?
 
     # add new flag to JSON
@@ -12,7 +16,7 @@ class QuestionTagsController < ApplicationController
   end
 
   def destroy
-    question_tag = QuestionTag.find(params[:question_tag_id])
+    question_tag = @user.question_tags.find(params[:question_tag_id])
     render_error_if_record_not_found(question_tag)
     tag = question_tag.tag
     question_tag.destroy
