@@ -1,15 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
+import composeWithDevTools from "redux-devtools-extension";
 import thunk from "redux-thunk";
 import Provider from "react-redux";
 import App from "./App";
+import userReducer from "./reducers/userReducer";
 
-// set up store
+const store = createStore(
+  userReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+// test fetch request
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
   document.getElementById("root")
 );
