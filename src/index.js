@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { createStore, applyMiddleware } from "redux";
-import composeWithDevTools from "redux-devtools-extension";
+import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
-import Provider from "react-redux";
+import { Provider } from "react-redux";
+
 import App from "./App";
 import userReducer from "./reducers/userReducer";
 
