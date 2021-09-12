@@ -6,10 +6,10 @@ import thunk from "redux-thunk";
 import { Provider } from "react-redux";
 
 import App from "./App";
-import userReducer from "./reducers/userReducer";
+import rootReducer from "./reducers/rootReducer";
 
 const store = createStore(
-  userReducer,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
 
