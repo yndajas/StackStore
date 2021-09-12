@@ -12,7 +12,6 @@ const store = createStore(
   userReducer,
   composeWithDevTools(applyMiddleware(thunk))
 );
-// test fetch request
 
 ReactDOM.render(
   <Provider store={store}>
