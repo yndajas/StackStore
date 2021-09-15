@@ -16,7 +16,7 @@ export const logIn = (data, register) => {
         if (json.error) {
           window.alert(json.error);
         } else {
-          dispatch({ type: "LOG_IN", payload: user });
+          dispatch({ type: "LOG_IN", payload: json.user });
         }
       });
   };
