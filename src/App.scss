@@ -1,3 +1,11 @@
 $light: #f0f0f0;
 $dark: #4c4c4c;
 $orange: #f47f24;
+
+nav.navbar {
+  img {
+    max-height: 75px;
+    padding: 10px 0px;
+    margin-right: 20px;
+  }
+}
