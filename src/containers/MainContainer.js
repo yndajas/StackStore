@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,21 +13,30 @@ import DashboardContainer from "./main/DashboardContainer";
 class MainContainer extends React.Component {
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            {/* create loggedIn function/action and call it here to find out if there's a logged in user */}
-            {/* {loggedIn ? <Redirect to="/dashboard" /> : <HomeContainer />}  */}
-            <HomeContainer />
-          </Route>
-          <Route exact path="/dashboard">
-            {/* {loggedIn ? <DashboardContainer /> : <Redirect to="/" />}  */}
-            <DashboardContainer />
-          </Route>
-        </Switch>
-      </Router>
+      <main>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              {this.props.user ? (
+                <Redirect to="/dashboard" />
+              ) : (
+                <HomeContainer />
+              )}
+            </Route>
+            <Route exact path="/dashboard">
+              {this.props.user ? <DashboardContainer /> : <Redirect to="/" />}
+            </Route>
+          </Switch>
+        </Router>
+      </main>
     );
   }
 }
 
-export default MainContainer;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps)(MainContainer);
