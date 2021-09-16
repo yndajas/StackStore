@@ -30,7 +30,7 @@ class SessionInput extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form id="session-control" onSubmit={this.handleSubmit}>
         <input
           type="email"
           name="email"
@@ -38,6 +38,7 @@ class SessionInput extends React.Component {
           value={this.state.email}
           onChange={this.handleChange}
         />
+        <span>&nbsp;</span>
         <input
           type="password"
           name="password"
@@ -45,6 +46,7 @@ class SessionInput extends React.Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
+        <span>&nbsp;</span>
         <button
           name="log-in"
           className="btn btn-primary"
@@ -52,6 +54,7 @@ class SessionInput extends React.Component {
         >
           Log in
         </button>
+        <span>&nbsp;</span>
         <button
           name="register"
           className="btn btn-success"
