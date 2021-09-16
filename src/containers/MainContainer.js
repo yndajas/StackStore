@@ -14,20 +14,22 @@ class MainContainer extends React.Component {
   render() {
     return (
       <main>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              {this.props.user ? (
-                <Redirect to="/dashboard" />
-              ) : (
-                <HomeContainer />
-              )}
-            </Route>
-            <Route exact path="/dashboard">
-              {this.props.user ? <DashboardContainer /> : <Redirect to="/" />}
-            </Route>
-          </Switch>
-        </Router>
+        <div className="container">
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                {this.props.user ? (
+                  <Redirect to="/dashboard" />
+                ) : (
+                  <HomeContainer />
+                )}
+              </Route>
+              <Route exact path="/dashboard">
+                {this.props.user ? <DashboardContainer /> : <Redirect to="/" />}
+              </Route>
+            </Switch>
+          </Router>
+        </div>
       </main>
     );
   }
