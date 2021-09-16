@@ -1,6 +1,67 @@
 $light: #f0f0f0;
+$medium: #cecece;
 $dark: #4c4c4c;
 $orange: #f47f24;
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-bottom: 60px;
+  background-color: $light;
+  color: $dark;
+
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: -apple-system, BlinkMacSystemFont, "Exo", "Segoe UI Semibold",
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+      "Noto Color Emoji";
+  }
+}
+
+header {
+  padding: 0;
+  border-bottom: 1px solid $medium;
+}
+
+main {
+  padding: 20px 1rem;
+
+  // div#content {
+  //     margin: 0 auto; // may not be needed
+  // }
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  border-top: 1px solid $medium;
+}
+
+.container {
+  margin: 0;
+  padding: 0 5%;
+  min-width: 100%;
+
+  @media (max-width: 767.98px) {
+    padding: 0;
+  }
+}
 
 nav.navbar {
   img {
@@ -8,4 +69,26 @@ nav.navbar {
     padding: 10px 0px;
     margin-right: 20px;
   }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+button {
+  padding: 6px 12px;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  max-width: 100%;
+  vertical-align: middle;
+
+  &:not(input[type="submit"]):not(button) {
+    width: 120px;
+    border: 0;
+  }
+}
+
+form#sesssion-control {
+  display: flex;
+  align-items: center;
 }
