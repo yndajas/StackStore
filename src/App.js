@@ -1,17 +1,17 @@
 import React from "react";
 
 import "./App.scss";
-import HeaderContainer from "./containers/HeaderContainer";
+import Header from "./components/Header";
 import MainContainer from "./containers/MainContainer";
-import FooterContainer from "./containers/FooterContainer";
+import Footer from "./components/Footer";
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <HeaderContainer />
+        <Header />
         <MainContainer />
-        <FooterContainer />
+        <Footer />
       </div>
     );
   }

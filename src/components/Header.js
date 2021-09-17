@@ -2,8 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import SessionInput from "../components/SessionInput";
-import LogOutButton from "../components/LogOutButton";
+import SessionInput from "./SessionInput";
+import LogOutButton from "./LogOutButton";
 
 class HeaderContainer extends React.Component {
   render() {

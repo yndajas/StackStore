@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import UserInfo from "../components/UserInfo";
+import UserInfo from "./UserInfo";
 
-class FooterContainer extends React.Component {
+class Footer extends React.Component {
   render() {
     const year = new Date().getFullYear();
 
@@ -36,4 +36,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(FooterContainer);
+export default connect(mapStateToProps)(Footer);
