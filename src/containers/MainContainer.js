@@ -3,24 +3,35 @@ import { connect } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 import HomeContainer from "./main/HomeContainer";
-import DashboardContainer from "./main/DashboardContainer";
+import SavedQuestions from "../components/savedQuestions/SavedQuestions";
+import SearchContainer from "./main/SearchContainer";
+import TagsContainer from "./main/TagsContainer";
 
 class MainContainer extends React.Component {
   render() {
+    const AuthRoute = ({ ...args }) => {
+      if (this.props.user) {
+        return <Route {...args} />;
+      } else {
+        return <Redirect to="/" />;
+      }
+    };
+
     return (
       <main>
         <div className="container">
           <Switch>
+            {/* set title in these routes? */}
             <Route exact path="/">
               {this.props.user ? (
-                <Redirect to="/dashboard" />
+                <Redirect to="/questions" />
               ) : (
                 <HomeContainer />
               )}
             </Route>
-            <Route exact path="/dashboard">
-              {this.props.user ? <DashboardContainer /> : <Redirect to="/" />}
-            </Route>
+            <AuthRoute exact path="/questions" component={SavedQuestions} />
+            <AuthRoute exact path="/search" component={SearchContainer} />
+            <AuthRoute exact path="/tags" component={TagsContainer} />
           </Switch>
         </div>
       </main>
