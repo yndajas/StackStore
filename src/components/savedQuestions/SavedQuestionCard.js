@@ -41,6 +41,8 @@ class SavedQuestionCard extends React.Component {
               <AnswerData answer={answer} />
               //   answer notes container
             ))}
+            {/* update from Stack Overflow button */}
+            {/* delete button */}
           </div>
         </div>
       </div>

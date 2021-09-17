@@ -21,7 +21,6 @@ class MainContainer extends React.Component {
       <main>
         <div className="container">
           <Switch>
-            {/* set title in these routes? */}
             <Route exact path="/">
               {this.props.user ? (
                 <Redirect to="/questions" />
