@@ -1,5 +1,3 @@
-import React from "react";
-
 const UserInfo = ({ email }) => {
   return (
     <li className="nav-item">
