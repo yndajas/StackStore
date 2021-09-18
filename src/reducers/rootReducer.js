@@ -4,8 +4,6 @@ export default function rootReducer(state = {}, action) {
       return { ...state, user: action.payload };
     case "LOG_OUT":
       return {};
-    case "FETCH_SAVED_QUESTIONS":
-      return { ...state, questions: action.payload };
     case "SET_SEARCH_QUERY":
       return { ...state, searchQuery: action.payload };
     case "SEARCH_QUESTIONS":
@@ -15,11 +13,27 @@ export default function rootReducer(state = {}, action) {
         searchResultsTotal: action.payload.total,
       };
     case "CLEAR_SEARCH":
-      const newState = { ...state };
-      delete newState.searchQuery;
-      delete newState.searchResults;
-      delete newState.searchResultsTotal;
-      return newState;
+      const newStateCS = { ...state };
+      delete newStateCS.searchQuery;
+      delete newStateCS.searchResults;
+      delete newStateCS.searchResultsTotal;
+      delete newStateCS.savedQuestions;
+      return newStateCS;
+    case "SAVE_QUESTION":
+      if (state.savedQuestions) {
+        return {
+          ...state,
+          savedQuestions: [...state.savedQuestions, action.payload],
+        };
+      } else {
+        return { ...state, savedQuestions: [action.payload] };
+      }
+    case "FETCH_SAVED_QUESTIONS":
+      return { ...state, questions: action.payload };
+    case "CLEAR_QUESTIONS":
+      const newStateCQ = { ...state };
+      delete newStateCQ.questions;
+      return newStateCQ;
     default:
       return state;
   }
