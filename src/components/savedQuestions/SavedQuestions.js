@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { fetchSavedQuestions } from "../../actions/fetchSavedQuestions";
+import { clearQuestions } from "../../actions/clearQuestions";
 import QuestionCard from "../QuestionCard";
 
 class SavedQuestions extends React.Component {
@@ -10,13 +11,17 @@ class SavedQuestions extends React.Component {
     this.props.fetchSavedQuestions(this.props.user);
   }
 
+  componentWillUnmount() {
+    this.props.clearQuestions();
+  }
+
   render() {
     return (
       <div>
         <h2>Saved questions</h2>
         {this.props.questions && this.props.questions.length > 0 ? (
           <div id="accordion">
-            {this.props.questions.map((question) => (
+            {this.props.questions.data.map((question) => (
               <QuestionCard question={question} type={"saved"} />
             ))}
           </div>
@@ -35,6 +40,7 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchSavedQuestions })(
-  SavedQuestions
-);
+export default connect(mapStateToProps, {
+  fetchSavedQuestions,
+  clearQuestions,
+})(SavedQuestions);
