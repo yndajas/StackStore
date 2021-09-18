@@ -1,24 +1,28 @@
-import React from "react";
+import { formatDate } from "../helpers/formatDate";
 
 const QuestionData = ({ question }) => {
   return (
     <div>
-      <p>{question.body}</p>
-      <h4>Stack meta</h4>
-      <a
-        href={`https://stackoverflow.com/q/${question.stack_id}`}
-        title="View question on Stack Overflow"
-      >
-        View question on Stack Overflow
-      </a>
+      <p
+        dangerouslySetInnerHTML={{
+          __html: question.body,
+        }}
+      />
+      <p>----</p>
       <p>
-        Created: {question.stack_created}
-        <br />
-        Updated: {question.stack_updated}
-        <br />
         Score: {question.score}
+        <br />
+        Last activity: {formatDate(question.stack_updated, "stack")}
+        <br />
+        Created: {formatDate(question.stack_created, "stack")}
+        <br />
+        <a
+          href={`https://stackoverflow.com/q/${question.id}`}
+          title="View question on Stack Overflow"
+        >
+          View question on Stack Overflow
+        </a>
       </p>
-      {/* update data button */}
     </div>
   );
 };
