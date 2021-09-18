@@ -22,10 +22,6 @@ class SessionInput extends React.Component {
   handleClick = (event) => {
     const register = event.target.name === "register";
     this.props.logIn(this.state, register);
-    this.setState({
-      email: "",
-      password: "",
-    });
   };
 
   render() {
