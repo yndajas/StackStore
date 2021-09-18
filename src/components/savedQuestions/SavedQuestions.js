@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import { fetchSavedQuestions } from "../../actions/fetchSavedQuestions";
-import SavedQuestionCard from "./SavedQuestionCard";
+import QuestionCard from "../QuestionCard";
 
 class SavedQuestions extends React.Component {
   componentDidMount() {
@@ -17,7 +17,7 @@ class SavedQuestions extends React.Component {
         {this.props.questions && this.props.questions.length > 0 ? (
           <div id="accordion">
             {this.props.questions.map((question) => (
-              <SavedQuestionCard question={question} />
+              <QuestionCard question={question} type={"saved"} />
             ))}
           </div>
         ) : (
