@@ -10,16 +10,25 @@ class Question < ApplicationRecord
   validates :body, length: { minimum: 1 }, presence: true
 
   def add_or_update_attributes_from_params(params)
-    %w[score title body stack_created stack_updated notes].each do |attribute|
+    %w[score title body].each do |attribute|
       send("#{attribute}=", params[:"#{attribute}"])
+    end
+    %w[stack_created stack_updated].each do |attribute|
+      send("#{attribute}=", Time.at(params[:"#{attribute}"]))
     end
     save
 
     # add/update answers
-    params[:answers].each { |answer_hash| Answer.create_or_update_from_hash_and_question(answer_hash, self) }
+    if params[:answers]
+      params[:answers].each do |answer_hash|
+        Answer.create_or_update_from_hash_and_question(answer_hash, self)
+      end
+    end
 
     # remove answers no longer present in source
-    answers_stack_ids = params[:answers].collect(&:stack_id)
-    answers.each { |answer| answer.destroy unless answers_stack_ids.include?(answer.stack_id) }
+    if params[:answers]
+      answers_stack_ids = params[:answers].collect { |answer| answer[:id] }
+      answers.each { |answer| answer.destroy unless answers_stack_ids.include?(answer.stack_id) }
+    end
   end
 end
