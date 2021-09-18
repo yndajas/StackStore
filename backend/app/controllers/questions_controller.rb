@@ -13,12 +13,12 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question = @user.questions.find_or_initialize_by(stack_id: params[:stack_id])
+    question = @user.questions.find_or_initialize_by(stack_id: params[:id])
     new_question = question.new_record?
     question.add_or_update_attributes_from_params(params) if new_question
 
     # add new flag to JSON
-    serialized_question_hash = QuestionSerializer.new(question).serializable_hash
+    serialized_question_hash = QuestionSerializer.new(question, include: %i[answers question_tags]).serializable_hash
     serialized_question_hash['new'] = new_question
 
     render json: serialized_question_hash.to_json
@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   def update
     @question.add_or_update_attributes_from_params(params)
 
-    render json: QuestionSerializer.new(@question)
+    render json: QuestionSerializer.new(@question, include: %i[answers question_tags])
   end
 
   def destroy
