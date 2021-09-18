@@ -1,10 +1,40 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import SearchResultCard from "./SearchResultCard";
+import QuestionCard from "../QuestionCard";
 
 class SearchResults extends React.Component {
   render() {
+    const rekeyedQuestionData = (searchResultQuestionData) => {
+      const answers = searchResultQuestionData.answers
+        ? searchResultQuestionData.answers.map((answer) =>
+            rekeyedAnswerData(answer)
+          )
+        : null;
+
+      return {
+        id: searchResultQuestionData.question_id,
+        score: searchResultQuestionData.score,
+        title: searchResultQuestionData.title,
+        body: searchResultQuestionData.body,
+        stack_created: searchResultQuestionData.creation_date,
+        stack_updated: searchResultQuestionData.last_activity_date,
+        answers: answers,
+      };
+    };
+
+    const rekeyedAnswerData = (searchResultAnswerData) => {
+      return {
+        id: searchResultAnswerData.answer_id,
+        stack_question_id: searchResultAnswerData.question_id,
+        accepted: searchResultAnswerData.is_accepted,
+        score: searchResultAnswerData.score,
+        body: searchResultAnswerData.body,
+        stack_created: searchResultAnswerData.creation_date,
+        stack_updated: searchResultAnswerData.last_edit_date || null,
+      };
+    };
+
     return (
       <div>
         <h2>Search results</h2>
@@ -32,7 +62,10 @@ class SearchResults extends React.Component {
             </p>
             <div id="accordion">
               {this.props.searchResults.map((searchResult) => (
-                <SearchResultCard searchResult={searchResult} />
+                <QuestionCard
+                  question={rekeyedQuestionData(searchResult)}
+                  type={"search"}
+                />
               ))}
             </div>
           </>
