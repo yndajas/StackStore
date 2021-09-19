@@ -5,6 +5,18 @@ import QuestionCard from "../QuestionCard";
 
 class SearchResults extends React.Component {
   render() {
+    const rekeyedAnswerData = (searchResultAnswerData) => {
+      return {
+        stack_id: searchResultAnswerData.answer_id,
+        stack_question_id: searchResultAnswerData.question_id,
+        accepted: searchResultAnswerData.is_accepted,
+        score: searchResultAnswerData.score,
+        body: searchResultAnswerData.body,
+        stack_created: searchResultAnswerData.creation_date * 1000,
+        stack_updated: searchResultAnswerData.last_edit_date * 1000 || null,
+      };
+    };
+
     const rekeyedQuestionData = (searchResultQuestionData) => {
       const answers = searchResultQuestionData.answers
         ? searchResultQuestionData.answers.map((answer) =>
@@ -13,25 +25,13 @@ class SearchResults extends React.Component {
         : null;
 
       return {
-        id: searchResultQuestionData.question_id,
+        stack_id: searchResultQuestionData.question_id,
         score: searchResultQuestionData.score,
         title: searchResultQuestionData.title,
         body: searchResultQuestionData.body,
-        stack_created: searchResultQuestionData.creation_date,
-        stack_updated: searchResultQuestionData.last_activity_date,
+        stack_created: searchResultQuestionData.creation_date * 1000,
+        stack_updated: searchResultQuestionData.last_activity_date * 1000,
         answers: answers,
-      };
-    };
-
-    const rekeyedAnswerData = (searchResultAnswerData) => {
-      return {
-        id: searchResultAnswerData.answer_id,
-        stack_question_id: searchResultAnswerData.question_id,
-        accepted: searchResultAnswerData.is_accepted,
-        score: searchResultAnswerData.score,
-        body: searchResultAnswerData.body,
-        stack_created: searchResultAnswerData.creation_date,
-        stack_updated: searchResultAnswerData.last_edit_date || null,
       };
     };
 
