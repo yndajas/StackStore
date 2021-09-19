@@ -22,13 +22,13 @@ const AnswerData = ({ answer }) => {
         <br />
         {answer.stack_updated ? (
           <>
-            Updated: {formatDate(answer.stack_updated, "stack")}
+            Updated: {formatDate(answer.stack_updated)}
             <br />
           </>
         ) : (
           ""
         )}
-        Created: {formatDate(answer.stack_created, "stack")}
+        Created: {formatDate(answer.stack_created)}
         <br />
         <a
           href={`https://stackoverflow.com/a/${answer.stack_id}`}
