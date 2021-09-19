@@ -1,6 +1,6 @@
 import QuestionData from "../QuestionData";
 import NotesContainer from "../../containers/main/NotesContainer";
-import TagsContainer from "../../containers/main/TagsContainer";
+import QuestionTagsContainer from "../../containers/main/QuestionTagsContainer";
 import AnswerData from "../AnswerData";
 
 const SavedQuestionCardBody = ({ question }) => {
@@ -9,15 +9,15 @@ const SavedQuestionCardBody = ({ question }) => {
       <QuestionData question={question} />
       {/* route/switch/if for notes: add button/show with edit button/edit form */}
       <NotesContainer question={question} />
-      {/* route/switch/if for tags: add button/show with remove button or text/edit with comma-separated tags and save button */}
-      <TagsContainer question={question} />
-      <hr />
+      {/* route/switch/if for tags: add button/show with edit button/edit with comma-separated tags and save button */}
+      <QuestionTagsContainer question={question} />
+      <h3>Answers</h3>
       {question.answers
-        ? question.answers.map((answer) => (
+        ? question.answers.map((answer, index) => (
             <>
-              <h3>Answers</h3>
               <AnswerData answer={answer} />
               {/* answer notes */}
+              {index < question.answers.length - 1 ? <hr /> : ""}
             </>
           ))
         : "No answers"}
