@@ -14,7 +14,7 @@ class Question < ApplicationRecord
       send("#{attribute}=", params[:"#{attribute}"])
     end
     %w[stack_created stack_updated].each do |attribute|
-      send("#{attribute}=", Time.at(params[:"#{attribute}"]))
+      send("#{attribute}=", Time.at(params[:"#{attribute}"] / 1000))
     end
     save
 
@@ -27,7 +27,7 @@ class Question < ApplicationRecord
 
     # remove answers no longer present in source
     if params[:answers]
-      answers_stack_ids = params[:answers].collect { |answer| answer[:id] }
+      answers_stack_ids = params[:answers].collect { |answer| answer[:stack_id] }
       answers.each { |answer| answer.destroy unless answers_stack_ids.include?(answer.stack_id) }
     end
   end
