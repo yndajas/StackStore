@@ -4,13 +4,13 @@ import SavedQuestionCardBody from "./savedQuestions/SavedQuestionCardBody";
 const QuestionCard = ({ question, type }) => {
   return (
     <div className="card">
-      <div className="card-header" id={`heading${question.id}`}>
+      <div className="card-header" id={`heading${question.stack_id}`}>
         <button
           className="btn"
           data-toggle="collapse"
-          data-target={`#collapse${question.id}`}
+          data-target={`#collapse${question.stack_id}`}
           aria-expanded="false"
-          aria-controls={`collapse${question.id}`}
+          aria-controls={`collapse${question.stack_id}`}
           dangerouslySetInnerHTML={{
             __html: question.title,
           }}
@@ -18,8 +18,8 @@ const QuestionCard = ({ question, type }) => {
       </div>
       <div
         className="collapse"
-        id={`collapse${question.id}`}
-        aria-labelledby={`heading${question.id}`}
+        id={`collapse${question.stack_id}`}
+        aria-labelledby={`heading${question.stack_id}`}
         data-parent="#accordion"
       >
         {type === "search" ? (
