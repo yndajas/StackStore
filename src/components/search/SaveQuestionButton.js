@@ -9,7 +9,8 @@ class SaveQuestionButton extends React.Component {
       if (this.props.savedQuestions) {
         let savedQuestion = this.props.savedQuestions.find(
           (savedQuestion) =>
-            savedQuestion.data.attributes.stack_id === this.props.question.id
+            savedQuestion.data.attributes.stack_id ===
+            this.props.question.stack_id
         );
 
         if (savedQuestion) {
