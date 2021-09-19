@@ -1,7 +1,8 @@
-$light: #f0f0f0;
-$medium: #cecece;
-$dark: #4c4c4c;
-$orange: #f47f24;
+$light-grey: #f0f0f0;
+$medium-grey: #cecece;
+$dark-grey: #4c4c4c;
+$primary-orange: #f47f24;
+$light-orange: #fcb07c;
 
 html {
   position: relative;
@@ -10,39 +11,25 @@ html {
 
 body {
   padding-bottom: 60px;
-  background-color: $light;
-  color: $dark;
+  background-color: $light-grey;
+  // background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
+  // background-image: url("https://www.transparenttextures.com/patterns/subtle-white-feathers.png");
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  color: $dark-grey;
 
-  .h1,
-  .h2,
-  .h3,
-  .h4,
-  .h5,
-  .h6,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: -apple-system, BlinkMacSystemFont, "Exo", "Segoe UI Semibold",
-      "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-      "Noto Color Emoji";
-  }
+  font-family: -apple-system, BlinkMacSystemFont, "Exo", "Segoe UI Semibold",
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 header {
   padding: 0;
-  border-bottom: 1px solid $medium;
+  border-bottom: 1px solid $medium-grey;
+  background-color: $light-grey;
 }
 
 main {
   padding: 20px 1rem;
-
-  // div#content {
-  //     margin: 0 auto; // may not be needed
-  // }
 }
 
 footer {
@@ -50,7 +37,8 @@ footer {
   bottom: 0;
   width: 100%;
   height: 60px;
-  border-top: 1px solid $medium;
+  border-top: 1px solid $medium-grey;
+  background-color: $light-grey;
 }
 
 .container {
@@ -97,6 +85,30 @@ form#sesssion-control {
   align-items: center;
 }
 
-div#accordion img {
-  max-width: 100%;
+div#accordion {
+  img {
+    max-width: 100%;
+  }
+
+  button.btn {
+    text-align: left;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: $medium-grey;
+}
+::-webkit-scrollbar-thumb {
+  background: $light-orange;
+  border-radius: 4px;
+}
+::-moz-selection {
+  background: $primary-orange;
+}
+::selection {
+  background: $light-orange;
 }
