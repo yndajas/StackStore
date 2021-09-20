@@ -1,5 +1,6 @@
 import { rekeySavedQuestionData } from "./rekeySavedQuestionData";
 import { sortAnswers } from "./sortAnswers";
+import { sortTags } from "./sortTags";
 
 export const processSavedQuestionData = (json) => {
   const rekeyedQuestion = rekeySavedQuestionData(
@@ -7,5 +8,5 @@ export const processSavedQuestionData = (json) => {
     json.included || []
   );
 
-  return sortAnswers(rekeyedQuestion);
+  return sortTags(sortAnswers(rekeyedQuestion));
 };
