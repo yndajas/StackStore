@@ -39,7 +39,7 @@ class QuestionsController < ApplicationController
     @question.question_tags.destroy_all
     @question.destroy
 
-    render json: { error: 'Question successfully deleted' }, status: 200
+    render json: { result: 'Question successfully deleted' }, status: 200
   end
 
   private
