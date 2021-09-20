@@ -1,6 +1,6 @@
 import React from "react";
 
-class TagsContainer extends React.Component {
+class Tags extends React.Component {
   componentDidMount() {
     document.title = "Tags - StackStore";
   }
@@ -10,4 +10,4 @@ class TagsContainer extends React.Component {
   }
 }
 
-export default TagsContainer;
+export default Tags;
