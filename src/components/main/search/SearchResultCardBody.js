@@ -6,6 +6,7 @@ const SearchResultCardBody = ({ question }) => {
   return (
     <div className="card-body">
       <QuestionData question={question} />
+      <hr />
       <h3>Answers</h3>
       {question.answers ? (
         question.answers.map((answer, index) => (
