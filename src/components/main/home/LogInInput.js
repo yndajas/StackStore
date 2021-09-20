@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { logIn } from "../actions/logIn";
+import { logIn } from "../../../actions/logIn";
 
-class SessionInput extends React.Component {
+class LogInInput extends React.Component {
   state = {
     email: "",
     password: "",
@@ -26,7 +26,7 @@ class SessionInput extends React.Component {
 
   render() {
     return (
-      <form id="session-control" onSubmit={this.handleSubmit}>
+      <form id="log-in" onSubmit={this.handleSubmit}>
         <input
           type="email"
           name="email"
@@ -34,7 +34,8 @@ class SessionInput extends React.Component {
           value={this.state.email}
           onChange={this.handleChange}
         />
-        <span>&nbsp;</span>
+        <br />
+        <br />
         <input
           type="password"
           name="password"
@@ -42,7 +43,8 @@ class SessionInput extends React.Component {
           value={this.state.password}
           onChange={this.handleChange}
         />
-        <span>&nbsp;</span>
+        <br />
+        <br />
         <button
           name="log-in"
           className="btn btn-primary"
@@ -50,7 +52,8 @@ class SessionInput extends React.Component {
         >
           Log in
         </button>
-        <span>&nbsp;</span>
+        <br />
+        <br />
         <button
           name="register"
           className="btn btn-success"
@@ -63,4 +66,4 @@ class SessionInput extends React.Component {
   }
 }
 
-export default connect(null, { logIn })(SessionInput);
+export default connect(null, { logIn })(LogInInput);
