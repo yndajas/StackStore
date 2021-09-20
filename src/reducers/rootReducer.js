@@ -31,8 +31,16 @@ export default function rootReducer(state = {}, action) {
     case "FETCH_SAVED_QUESTIONS":
       return { ...state, questions: action.payload };
     case "CLEAR_QUESTIONS":
+      const newStateCQs = { ...state };
+      delete newStateCQs.questions;
+      return newStateCQs;
+    case "FETCH_SAVED_QUESTION":
+    // fall through
+    case "UPDATE_QUESTION":
+      return { ...state, question: action.payload };
+    case "CLEAR_QUESTION":
       const newStateCQ = { ...state };
-      delete newStateCQ.questions;
+      delete newStateCQ.question;
       return newStateCQ;
     default:
       return state;
