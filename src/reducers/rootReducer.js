@@ -38,6 +38,8 @@ export default function rootReducer(state = {}, action) {
     // fall through
     case "UPDATE_QUESTION":
       return { ...state, question: action.payload };
+    case "DELETE_QUESTION":
+      return { ...state, question: { ...state.question, deleted: true } };
     case "CLEAR_QUESTION":
       const newStateCQ = { ...state };
       delete newStateCQ.question;
