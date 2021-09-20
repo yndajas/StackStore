@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { logOut } from "../actions/logOut";
+import { logOut } from "../../actions/logOut";
 
 class LogOutButton extends React.Component {
   render() {
