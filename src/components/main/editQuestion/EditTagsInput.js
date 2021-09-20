@@ -1,18 +1,72 @@
-// instructions (comma-separated)
-// text input
-// save button
-
-// send post request to /users/:user_id/questions/:question_id/tags
-// need to change backend to deal with processing multiple tags in one request
-// and deleting any removed tags at the same time (destroy action no longer needed)
-// then return the question rather than the tags?
-
 import React from "react";
+import { connect } from "react-redux";
+
+import { updateQuestion } from "../../../actions/updateQuestion";
+import { formatTags } from "../../../helpers/formatTags";
 
 class EditTagsInput extends React.Component {
+  state = {
+    tags: formatTags(this.props.question.tags),
+  };
+
+  componentDidUpdate(prevProps) {
+    if (
+      formatTags(prevProps.question.tags) !==
+      formatTags(this.props.question.tags)
+    ) {
+      this.setState({ tags: formatTags(this.props.question.tags) });
+    }
+  }
+
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+  };
+
+  handleClick = () => {
+    this.props.updateQuestion(this.props.user, {
+      id: this.props.question.id,
+      tags: this.state.tags,
+    });
+  };
+
   render() {
-    return <div>Edit tags input</div>;
+    const checkIfUnsavedChanges = () => {
+      return formatTags(this.props.question.tags) !== this.state.tags;
+    };
+
+    return (
+      <form id="edit-tags" onSubmit={this.handleSubmit}>
+        <input
+          type="text"
+          name="tags"
+          value={this.state.tags}
+          onChange={this.handleChange}
+        />
+        <br />
+        <br />
+        <button
+          disabled={!checkIfUnsavedChanges()}
+          name="save-tags"
+          className="btn btn-success"
+          onClick={this.handleClick}
+        >
+          {checkIfUnsavedChanges() ? "Save" : "Saved"}
+        </button>
+      </form>
+    );
   }
 }
 
-export default EditTagsInput;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { updateQuestion })(EditTagsInput);
