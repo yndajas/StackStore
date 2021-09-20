@@ -1,11 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import SearchInput from "../../components/search/SearchInput";
-import SearchResults from "../../components/search/SearchResults";
-import { clearSearch } from "../../actions/clearSearch";
+import SearchInput from "./SearchInput";
+import SearchResults from "./SearchResults";
+import { clearSearch } from "../../../actions/clearSearch";
 
-class SearchContainer extends React.Component {
+class Search extends React.Component {
   componentDidMount() {
     document.title = "Search - StackStore";
   }
@@ -25,4 +25,4 @@ class SearchContainer extends React.Component {
   }
 }
 
-export default connect(null, { clearSearch })(SearchContainer);
+export default connect(null, { clearSearch })(Search);
