@@ -44,4 +44,14 @@ class Question < ApplicationRecord
       end
     end
   end
+
+  def destroy_including_associated_data
+    answers.destroy_all
+    question_tags.each do |question_tag|
+      tag = question_tag.tag
+      question_tag.destroy
+      tag.destroy if tag.question_tags.length.zero?
+    end
+    destroy
+  end
 end
