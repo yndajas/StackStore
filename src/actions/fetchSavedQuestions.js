@@ -1,6 +1,10 @@
+import { getBackendUrl } from "../helpers/getBackendUrl";
+import { rekeySavedQuestionData } from "../helpers/rekeySavedQuestionData";
+import { sortQuestions } from "../helpers/sortQuestions";
+
 export const fetchSavedQuestions = (user) => {
   return (dispatch) => {
-    fetch(`http://localhost:3000/users/${user.id}/questions`, {
+    fetch(`${getBackendUrl()}/users/${user.id}/questions`, {
       method: "GET",
       headers: {
         token: user.token,
@@ -11,7 +15,16 @@ export const fetchSavedQuestions = (user) => {
         if (json.error) {
           window.alert(json.error);
         } else {
-          dispatch({ type: "FETCH_SAVED_QUESTIONS", payload: json }); // the payload is likely wrong, or will need sorting out - the questions are likely to be in a key called data, with answers elsewhere; need to console log this to check
+          const rekeyedQuestions = json.data.map((question) =>
+            rekeySavedQuestionData(question, json.included || [])
+          );
+
+          const processedQuestions = sortQuestions(rekeyedQuestions);
+
+          dispatch({
+            type: "FETCH_SAVED_QUESTIONS",
+            payload: processedQuestions,
+          });
         }
       });
   };
