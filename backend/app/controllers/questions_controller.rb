@@ -27,7 +27,11 @@ class QuestionsController < ApplicationController
   def update
     @question.add_or_update_attributes_from_params(params)
 
-    render json: serialized_question_json(@question)
+    # the instance variable @question doesn't update to reflect changes in answers
+    # so this is needed in order to get fully updated data
+    updated_question = Question.find(@question.id)
+
+    render json: serialized_question_json(updated_question)
   end
 
   def destroy
