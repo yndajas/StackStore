@@ -1,21 +1,27 @@
-export const saveQuestion = (user, data) => {
+import { getBackendUrl } from "../helpers/getBackendUrl";
+import { processSavedQuestionData } from "../helpers/processSavedQuestionData";
+
+export const saveQuestion = (user, question) => {
   return (dispatch) => {
-    // need to set the base URL below to the API URL - set this somewhere?
-    fetch(`http://localhost:3000/users/${user.id}/questions`, {
+    fetch(`${getBackendUrl()}/users/${user.id}/questions`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
         token: user.token,
       },
       method: "POST",
-      body: JSON.stringify(data),
+      body: JSON.stringify(question),
     })
       .then((response) => response.json())
       .then((json) => {
         if (json.error) {
           window.alert(json.error);
         } else {
-          dispatch({ type: "SAVE_QUESTION", payload: json });
+          const processedQuestion = processSavedQuestionData(json);
+
+          processedQuestion.new = json.new;
+
+          dispatch({ type: "SAVE_QUESTION", payload: processedQuestion });
         }
       });
   };
