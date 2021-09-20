@@ -6,7 +6,11 @@ class Tags extends React.Component {
   }
 
   render() {
-    return <div>Tags container</div>;
+    return (
+      <div>
+        <h2>Tags</h2>Tags container
+      </div>
+    );
   }
 }
 
