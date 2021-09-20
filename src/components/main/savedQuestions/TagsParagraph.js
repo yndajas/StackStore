@@ -1,10 +1,12 @@
+import { formatTags } from "../../../helpers/formatTags";
+
 const TagsParagraph = ({ question }) => {
   return (
     <>
       {question.tags.length > 0 ? (
         <p>
           <b>Tags: </b>
-          {question.tags.map((tag) => tag.tag_text).join(", ")}
+          {formatTags(question.tags)}
         </p>
       ) : (
         ""
