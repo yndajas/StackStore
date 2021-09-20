@@ -37,7 +37,11 @@ class Question < ApplicationRecord
       QuestionTag.create_or_update_from_texts_and_question(texts, self)
 
       # delete tags no longer present in source
-      question_tags.each { |question_tag| question_tag.destroy unless texts.include?(question_tag.text) }
+      question_tags.each do |question_tag|
+        tag = question_tag.tag
+        question_tag.destroy unless texts.include?(question_tag.text)
+        tag.destroy if tag.question_tags.length.zero?
+      end
     end
   end
 end
