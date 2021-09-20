@@ -11,7 +11,6 @@ const SavedQuestionCardBody = ({ question }) => {
       <TagsParagraph question={question} />
       <EditQuestionButton question={question} />
       <hr />
-      <h3>Question</h3>
       <QuestionData question={question} />
       <hr />
       <h3>Answers</h3>
