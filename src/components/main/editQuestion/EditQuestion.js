@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Redirect } from "react-router";
 
 import { fetchSavedQuestion } from "../../../actions/fetchSavedQuestion";
 import { clearQuestion } from "../../../actions/clearQuestion";
@@ -24,43 +25,48 @@ class EditQuestionContainer extends React.Component {
     return (
       <div>
         {this.props.question ? (
-          <>
-            <h3>Edit question</h3>
-            <h4>Notes</h4>
-            <EditNotesInput question={this.props.question} />
-            <hr />
-            <h4>Tags</h4>
-            <EditTagsInput question={this.props.question} />
-            <hr />
-            <h4>Question data</h4>
-            <p>Update question and answer data from Stack Overflow</p>
-            <UpdateQuestionDataButton question={this.props.question} />
-            <hr />
-            <h4>Delete question</h4>
-            <p>
-              If you delete a question, you save it again via the search
-              feature, however all notes and tags will be lost permanently
-            </p>
-            <DeleteQuestionButton question={this.props.question} />
-            <hr />
-            <h3>Question</h3>
-            <QuestionData question={this.props.question} />
-            <hr />
-            <h3>Answers</h3>
-            {this.props.question.answers &&
-            this.props.question.answers.length > 0
-              ? this.props.question.answers.map((answer, index) => (
-                  <>
-                    <AnswerData answer={answer} />
-                    {index < this.props.question.answers.length - 1 ? (
-                      <hr />
-                    ) : (
-                      ""
-                    )}
-                  </>
-                ))
-              : "No answers"}
-          </>
+          this.props.question.deleted ? (
+            <Redirect to="/questions" />
+          ) : (
+            <>
+              <h2>Edit question</h2>
+              <h3>Notes</h3>
+              <EditNotesInput question={this.props.question} />
+              <hr />
+              <h3>Tags</h3>
+              <EditTagsInput question={this.props.question} />
+              <hr />
+              <h3>Question data</h3>
+              <p>Update question and answer data from Stack Overflow</p>
+              <UpdateQuestionDataButton question={this.props.question} />
+              <br />
+              <br />
+              <h4>{this.props.question.title}</h4>
+              <QuestionData question={this.props.question} />
+              <hr />
+              <h4>Answers</h4>
+              {this.props.question.answers &&
+              this.props.question.answers.length > 0
+                ? this.props.question.answers.map((answer, index) => (
+                    <>
+                      <AnswerData answer={answer} />
+                      {index < this.props.question.answers.length - 1 ? (
+                        <hr />
+                      ) : (
+                        ""
+                      )}
+                    </>
+                  ))
+                : "No answers"}
+              <hr />
+              <h3>Delete question</h3>
+              <p>
+                If you delete a question, you can save it again via the search
+                feature, however all notes and tags will be lost permanently
+              </p>
+              <DeleteQuestionButton question={this.props.question} />
+            </>
+          )
         ) : (
           ""
         )}
