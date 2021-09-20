@@ -1,9 +1,10 @@
+import { getBackendUrl } from "../helpers/getBackendUrl";
+
 export const logIn = (data, register) => {
   const endpoint = [register ? "users" : "sessions"];
 
   return (dispatch) => {
-    // need to set the base URL below to the API URL - set this somewhere?
-    fetch(`http://localhost:3000/${endpoint}`, {
+    fetch(`${getBackendUrl()}/${endpoint}`, {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
