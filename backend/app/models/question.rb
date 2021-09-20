@@ -10,11 +10,11 @@ class Question < ApplicationRecord
   validates :body, length: { minimum: 1 }, presence: true
 
   def add_or_update_attributes_from_params(params)
-    %w[score title body].each do |attribute|
-      send("#{attribute}=", params[:"#{attribute}"])
+    %w[score title body notes].each do |attribute|
+      send("#{attribute}=", params[:"#{attribute}"]) if params[:"#{attribute}"]
     end
     %w[stack_created stack_updated].each do |attribute|
-      send("#{attribute}=", Time.at(params[:"#{attribute}"] / 1000))
+      send("#{attribute}=", Time.at(params[:"#{attribute}"] / 1000)) if params[:"#{attribute}"]
     end
     save
 
