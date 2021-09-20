@@ -1,3 +1,6 @@
+import { rekeyExternalQuestionData } from "../helpers/rekeyExternalQuestionData";
+import { sortQuestions } from "../helpers/sortQuestions";
+
 export const searchQuestions = (query) => {
   return (dispatch) => {
     dispatch({ type: "SET_SEARCH_QUERY", payload: query });
@@ -6,30 +9,15 @@ export const searchQuestions = (query) => {
     )
       .then((response) => response.json())
       .then((json) => {
-        const sortedItems = json.items
-          .sort((a, b) => parseInt(b.answer_count) - parseInt(a.answer_count))
-          .sort((a, b) => parseInt(b.score) - parseInt(a.score))
-          .map((sortedItem) => {
-            if (sortedItem.answers) {
-              const sortedAnswers = sortedItem.answers.sort((a, b) => {
-                if (a.is_accepted) {
-                  return -1;
-                } else if (b.is_accepted) {
-                  return 1;
-                } else {
-                  return parseInt(b.score) - parseInt(a.score);
-                }
-              });
+        const rekeyedQuestions = json.items.map((question) =>
+          rekeyExternalQuestionData(question)
+        );
 
-              return { ...sortedItem, answers: sortedAnswers };
-            } else {
-              return sortedItem;
-            }
-          });
+        const processedQuestions = sortQuestions(rekeyedQuestions);
 
         dispatch({
           type: "SEARCH_QUESTIONS",
-          payload: { ...json, items: sortedItems },
+          payload: { ...json, items: processedQuestions },
         });
       });
   };
