@@ -35,9 +35,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.answers.destroy_all
-    @question.question_tags.destroy_all
-    @question.destroy
+    @question.destroy_including_associated_data
 
     render json: { result: 'Question successfully deleted' }, status: 200
   end
