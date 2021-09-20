@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { saveQuestion } from "../../actions/saveQuestion";
+import { saveQuestion } from "../../../actions/saveQuestion";
 
 class SaveQuestionButton extends React.Component {
   render() {
@@ -9,8 +9,7 @@ class SaveQuestionButton extends React.Component {
       if (this.props.savedQuestions) {
         let savedQuestion = this.props.savedQuestions.find(
           (savedQuestion) =>
-            savedQuestion.data.attributes.stack_id ===
-            this.props.question.stack_id
+            savedQuestion.stack_id === this.props.question.stack_id
         );
 
         if (savedQuestion) {
@@ -34,7 +33,7 @@ class SaveQuestionButton extends React.Component {
           this.props.saveQuestion(this.props.user, this.props.question)
         }
       >
-        {checkIfSavedOrUpdated() || "Save"}
+        {checkIfSavedOrUpdated() || "Save question"}
       </button>
     );
   }
