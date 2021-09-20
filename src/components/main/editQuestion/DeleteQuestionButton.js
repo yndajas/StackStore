@@ -1,14 +1,30 @@
-// button
-
-// send delete request with question ID
-// redirect to questions
-
 import React from "react";
+import { connect } from "react-redux";
+
+import { deleteQuestion } from "../../../actions/deleteQuestion";
 
 class DeleteQuestionButton extends React.Component {
   render() {
-    return <div>Delete question button</div>;
+    return (
+      <button
+        name="delete-question"
+        className="btn btn-danger"
+        onClick={() =>
+          this.props.deleteQuestion(this.props.user, this.props.question)
+        }
+      >
+        Delete question
+      </button>
+    );
   }
 }
 
-export default DeleteQuestionButton;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+  };
+};
+
+export default connect(mapStateToProps, { deleteQuestion })(
+  DeleteQuestionButton
+);
