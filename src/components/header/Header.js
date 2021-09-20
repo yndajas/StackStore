@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import SessionInput from "./SessionInput";
 import LogOutButton from "./LogOutButton";
 
 class HeaderContainer extends React.Component {
@@ -32,24 +31,34 @@ class HeaderContainer extends React.Component {
             </button>
             <div className="collapse navbar-collapse" id="navbar">
               <ul className="navbar-nav mr-auto mt-2" id="nav-elements">
-                <li className="nav-item">
-                  <Link to="/questions" className="nav-link">
-                    Questions
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/tags" className="nav-link">
-                    Tags
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/search" className="nav-link">
-                    Search
-                  </Link>
-                </li>
+                {this.props.user ? (
+                  <>
+                    <li className="nav-item">
+                      <Link to="/questions" className="nav-link">
+                        Questions
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/tags" className="nav-link">
+                        Tags
+                      </Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/search" className="nav-link">
+                        Search
+                      </Link>
+                    </li>
+                  </>
+                ) : (
+                  <li className="nav-item">
+                    <Link to="/about" className="nav-link">
+                      About
+                    </Link>
+                  </li>
+                )}
               </ul>
-              <ul className="navbar-nav ml-auto mt-2" id="session-control">
-                {this.props.user ? <LogOutButton /> : <SessionInput />}
+              <ul className="navbar-nav ml-auto mt-2" id="log-out">
+                {this.props.user ? <LogOutButton /> : ""}
               </ul>
             </div>
           </div>
