@@ -63,26 +63,18 @@ nav.navbar {
   }
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="submit"],
-button {
-  padding: 6px 12px;
-  border-radius: 0.25rem;
-  box-sizing: border-box;
-  max-width: 100%;
-  vertical-align: middle;
+div#home {
+  text-align: center;
 
-  &:not(input[type="submit"]):not(button) {
-    width: 120px;
-    border: 0;
+  form#log-in {
+    width: 250px;
+    max-width: 100%;
+    margin: 0 auto;
+
+    button {
+      width: 100%;
+    }
   }
-}
-
-form#sesssion-control {
-  display: flex;
-  align-items: center;
 }
 
 div#accordion {
@@ -93,6 +85,10 @@ div#accordion {
   button.btn {
     text-align: left;
   }
+}
+
+.notes {
+  white-space: pre-wrap;
 }
 
 ::-webkit-scrollbar {
@@ -111,4 +107,35 @@ div#accordion {
 }
 ::selection {
   background: $light-orange;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="submit"],
+button,
+textarea {
+  padding: 6px 12px;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  max-width: 100%;
+  vertical-align: middle;
+
+  &:not(input[type="submit"]):not(button):not(textarea) {
+    width: 250px;
+  }
+
+  &:not(input[type="submit"]):not(button) {
+    border: 0;
+    // border: 2px solid $light-orange;
+    &:focus-visible {
+      outline-color: $light-orange;
+    }
+  }
+}
+
+textarea {
+  width: 750px;
+  height: 250px;
+  resize: both;
 }
