@@ -8,7 +8,7 @@ class About extends React.Component {
   render() {
     return (
       <div>
-        <h3>What is StackStore?</h3>
+        <h2>What is StackStore?</h2>
         <br />
         <p>With StackStore, you can:</p>
         <ul>

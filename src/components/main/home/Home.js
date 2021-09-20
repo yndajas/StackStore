@@ -11,7 +11,7 @@ class Home extends React.Component {
   render() {
     return (
       <div id="home">
-        <h3>Get started</h3>
+        <h2>Get started</h2>
         <br />
         <LogInInput />
         <br />
