@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { searchQuestions } from "../../actions/searchQuestions";
+import { searchQuestions } from "../../../actions/searchQuestions";
 
 class SearchInput extends React.Component {
   state = {
@@ -25,11 +25,11 @@ class SearchInput extends React.Component {
   render() {
     return (
       <form id="search" onSubmit={this.handleSubmit}>
-        <p>Search questions titles from Stack Overflow</p>
+        <p>Search for questions from Stack Overflow by words in their title</p>
         <input
           type="text"
           name="query"
-          placeholder="Search term"
+          placeholder="Keyword(s)"
           value={this.state.query}
           onChange={this.handleChange}
         />
