@@ -34,6 +34,7 @@ class EditQuestionContainer extends React.Component {
               <EditNotesInput question={this.props.question} />
               <hr />
               <h3>Tags</h3>
+              <p>Add tags in a comma-separated list</p>
               <EditTagsInput question={this.props.question} />
               <hr />
               <h3>Question data</h3>
