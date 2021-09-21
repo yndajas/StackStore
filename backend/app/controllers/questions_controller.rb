@@ -46,8 +46,4 @@ class QuestionsController < ApplicationController
     @question = @user.questions.find(params[:question_id])
     render_error_if_record_not_found(@question)
   end
-
-  def serialized_question_json(questions)
-    QuestionSerializer.new(questions, include: %i[answers question_tags])
-  end
 end
