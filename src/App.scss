@@ -12,9 +12,7 @@ html {
 body {
   padding-bottom: 60px;
   background-color: $light-grey;
-  // background-image: url("https://www.transparenttextures.com/patterns/45-degree-fabric-light.png");
-  // background-image: url("https://www.transparenttextures.com/patterns/subtle-white-feathers.png");
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  background-image: url("./assets/cubes.png");
   color: $dark-grey;
 
   font-family: -apple-system, BlinkMacSystemFont, "Exo", "Segoe UI Semibold",
@@ -133,7 +131,6 @@ textarea {
 
   &:not(input[type="submit"]):not(button) {
     border: 0;
-    // border: 2px solid $light-orange;
     &:focus-visible {
       outline-color: $light-orange;
     }
