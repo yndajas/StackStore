@@ -1,10 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import SavedQuestionsAccordion from "../savedQuestions/SavedQuestionsAccordion";
 import { fetchSavedTag } from "../../../actions/fetchSavedTag";
 import { clearTag } from "../../../actions/clearTag";
 import { clearQuestions } from "../../../actions/clearQuestions";
-import SavedQuestionsAccordion from "../savedQuestions/SavedQuestionsAccordion";
 
 class Tag extends React.Component {
   componentDidMount() {
