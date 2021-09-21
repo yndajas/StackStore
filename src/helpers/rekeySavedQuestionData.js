@@ -1,4 +1,4 @@
-const rekeySavedAnswerData = (answerData) => {
+const rekeyIncludedAnswerData = (answerData) => {
   return {
     id: answerData.id,
     ...answerData.attributes,
@@ -7,7 +7,7 @@ const rekeySavedAnswerData = (answerData) => {
   };
 };
 
-const rekeySavedTagData = (questionTagData) => {
+const rekeyIncludedTagData = (questionTagData) => {
   return { id: questionTagData.id, ...questionTagData.attributes };
 };
 
@@ -19,11 +19,11 @@ export const rekeySavedQuestionData = (question, allIncluded) => {
 
   const answers = included
     .filter((includedData) => includedData.type === "answer")
-    .map((answer) => rekeySavedAnswerData(answer));
+    .map((answer) => rekeyIncludedAnswerData(answer));
 
   const tags = included
     .filter((includedData) => includedData.type === "question_tag")
-    .map((question_tag) => rekeySavedTagData(question_tag));
+    .map((question_tag) => rekeyIncludedTagData(question_tag));
 
   const questionData = {
     id: question.id,
