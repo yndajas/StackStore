@@ -1,70 +1,63 @@
-# Getting Started with Create React App
+<img src="public/images/favicon/android-chrome-192x192.png" alt="app icon" title="app icon" width="70px">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# StackStore
 
-## Available Scripts
+A simple application for finding, keeping, tagging and making notes on Stack Overflow questions!
 
-In the project directory, you can run:
+You can view a demo of the app over on YouTube: [youtube.com/watch?v=x-QS4K6tN78](https://www.youtube.com/watch?v=x-QS4K6tN78)</a>.
 
-### `yarn start`
+## Online use
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The app is available to use for free at [stackstore.yndajas.co](http://stackstore.yndajas.co) (link will redirect to GitHub)!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Local use
 
-### `yarn test`
+You can run a copy of the app offline for local use. After cloning or downloading the repository, follow the instructions below.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
 
-### `yarn build`
+The following instructions are for Windows Subsystem for Linux/Ubuntu, but it's also possible to run the app on other systems. The only difference should be the method for starting the PostgreSQL server - I don't have instructions for this, but [check the PostgreSQL website](https://www.postgresql.org) for more information.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install Ruby ([help](https://www.ruby-lang.org/en/documentation/installation)), then in a terminal:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. `gem install bundler`
+2. change directory to StackStore backend (e.g. `cd /mnt/c/Users/yndaj/Documents/GitHub/StackStore/backend`, replacing the path with wherever you've downloaded/moved the repository, followed by `/backend`)
+3. `bundle install`
+4. if you don't have PostgreSQL installed: `sudo apt-get install postgresql`
+5. `sudo service postgresql start` (if you get an error saying a user doesn't exist, try the following first, changing '<USERNAME>' to the username mentioned in the error: `sudo -u postgres createuser --superuser <USERNAME>`)
+6. `rake resetdb` - or, if you want to start with a clean database (no test data), run `rake db:drop`, `rake db:create` and `rake db:migrate`
+7. `cd ..` return to the root of the project directory
+8. `npm install` install npm packages required by React app
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Usage
 
-### `yarn eject`
+#### Load up the backend server
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+In a terminal, from the 'StackStore' directory:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. `cd backend`
+2. `rails s`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+#### Load up the frontend server
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+In a separate terminal instance, from the 'StackStore' directory (not the 'backend' subdirectory):
 
-## Learn More
+1. `npm start`
+2. type `y` when it tells you port 3000 is already in use (the app will use port 3001)
+3. open 'localhost:3001' in your browser
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contributing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Bug reports and pull requests are welcome on GitHub at [https://github.com/yndajas/StackStore](https://github.com/yndajas/StackStore).
 
-### Code Splitting
+## Licence
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This app is made available open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
-### Analyzing the Bundle Size
+## Credits
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Search function built on the [Stack Exchange API](https://api.stackexchange.com)
 
-### Making a Progressive Web App
+Logo icon/favicon based on shape (colour edited for use on StackStore) by [Freepik](https://www.flaticon.com/authors/freepik), available [here](https://www.flaticon.com/free-icon/stacked-files_17640).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Background image by [Sander Ottens](https://www.sanderottens.com), available at [Transparent Textures](https://www.transparenttextures.com) (search 'cubes') and [Subtle Patterns](https://www.toptal.com/designers/subtlepatterns/cubes) (by Toptal).
