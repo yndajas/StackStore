@@ -1,5 +1,5 @@
 class TagSerializer
   include JSONAPI::Serializer
   has_many :question_tags
-  attributes :text
+  attributes :text, :slug
 end
