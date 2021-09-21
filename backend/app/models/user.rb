@@ -19,6 +19,6 @@ class User < ApplicationRecord
   def questions_by_tag(tag)
     questions.collect do |question|
       question if question.tags.include?(tag)
-    end
+    end.compact
   end
 end
