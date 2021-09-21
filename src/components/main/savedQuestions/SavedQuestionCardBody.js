@@ -1,6 +1,6 @@
 import NotesParagraph from "./NotesParagraph";
 import TagsParagraph from "./TagsParagraph";
-import EditQuestionButton from "./EditQuestionButton";
+import EditQuestionLinkButton from "./EditQuestionLinkButton";
 import QuestionData from "../QuestionData";
 import AnswerData from "../AnswerData";
 
@@ -9,7 +9,7 @@ const SavedQuestionCardBody = ({ question }) => {
     <div className="card-body">
       <NotesParagraph question={question} />
       <TagsParagraph question={question} />
-      <EditQuestionButton question={question} />
+      <EditQuestionLinkButton question={question} />
       <hr />
       <QuestionData question={question} />
       <hr />
