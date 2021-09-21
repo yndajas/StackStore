@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import TagLinkButton from "./TagLinkButton";
 import { fetchSavedTags } from "../../../actions/fetchSavedTags";
 import { clearTags } from "../../../actions/clearTags";
-import TagLinkButton from "./TagLinkButton";
 
 class Tags extends React.Component {
   componentDidMount() {
@@ -32,7 +32,7 @@ class Tags extends React.Component {
             </div>
           </>
         ) : (
-          "No saved tags"
+          "Loading or no saved tags"
         )}
       </div>
     );
