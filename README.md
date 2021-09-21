@@ -4,6 +4,12 @@
 
 A simple application for finding, keeping, tagging and making notes on Stack Overflow questions!
 
+With StackStore, you can:
+- search for Stack Overflow questions by title
+- view questions and answers
+- save questions to your own store
+- add tags and notes to questions and view questions by tag
+
 You can view a demo of the app over on YouTube: [youtube.com/watch?v=x-QS4K6tN78](https://www.youtube.com/watch?v=x-QS4K6tN78)</a>.
 
 ## Online use
