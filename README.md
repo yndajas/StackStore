@@ -40,7 +40,7 @@ In a terminal, from the 'StackStore' directory:
 
 #### Load up the frontend server
 
-In a separate terminal instance, from the 'StackStore' directory (not the 'backend' subdirectory):
+In a separate terminal instance, from the main 'StackStore' directory (not the 'backend' subdirectory):
 
 1. `npm start`
 2. type `y` when it tells you port 3000 is already in use (the app will use port 3001)
