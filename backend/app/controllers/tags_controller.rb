@@ -12,6 +12,9 @@ class TagsController < ApplicationController
     render_error_if_record_not_found(tag)
     questions = @user.questions_by_tag(tag)
 
-    render json: QuestionSerializer.new(questions)
+    serialized_question_hash = serialized_question_json(questions).serializable_hash
+    serialized_question_hash['tag'] = tag.text
+
+    render json: serialized_question_hash.to_json
   end
 end
