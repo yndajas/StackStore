@@ -7,6 +7,7 @@ import About from "./About";
 import SavedQuestions from "./savedQuestions/SavedQuestions";
 import EditQuesion from "./editQuestion/EditQuestion";
 import Tags from "./tags/Tags";
+import Tag from "./tag/Tag";
 import Search from "./search/Search";
 
 class Main extends React.Component {
@@ -34,6 +35,7 @@ class Main extends React.Component {
               component={EditQuesion}
             />
             <AuthRoute exact path="/tags" component={Tags} />
+            <AuthRoute exact path="/tags/:tagSlug" component={Tag} />
             <AuthRoute exact path="/search" component={Search} />
           </Switch>
         </div>
