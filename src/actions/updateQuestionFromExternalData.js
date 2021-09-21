@@ -1,5 +1,5 @@
 import { rekeyExternalQuestionData } from "../helpers/rekeyExternalQuestionData";
-import { sortAnswers } from "../helpers/sortAnswers";
+import { sortAnswersWithQuestion } from "../helpers/sortAnswers";
 import { updateQuestion } from "./updateQuestion";
 
 export const updateQuestionFromExternalData = (user, question) => {
@@ -11,7 +11,7 @@ export const updateQuestionFromExternalData = (user, question) => {
       .then((json) => {
         const rekeyedQuestion = rekeyExternalQuestionData(json.items[0]);
 
-        const processedQuestion = sortAnswers(rekeyedQuestion);
+        const processedQuestion = sortAnswersWithQuestion(rekeyedQuestion);
 
         processedQuestion.id = question.id;
 

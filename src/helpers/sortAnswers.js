@@ -1,4 +1,4 @@
-export const sortAnswers = (question) => {
+export const sortAnswersWithQuestion = (question) => {
   if (question.answers) {
     const sortedAnswers = question.answers.sort((a, b) => {
       if (a.accepted) {
