@@ -4,6 +4,12 @@
 
 A simple application for finding, keeping, tagging and making notes on Stack Overflow questions!
 
+With StackStore, you can:
+- search for Stack Overflow questions by title
+- view questions and answers
+- save questions to your own store
+- add tags and notes to questions and view questions by tag
+
 You can view a demo of the app over on YouTube: [youtube.com/watch?v=x-QS4K6tN78](https://www.youtube.com/watch?v=x-QS4K6tN78)</a>.
 
 ## Online use
@@ -40,7 +46,7 @@ In a terminal, from the 'StackStore' directory:
 
 #### Load up the frontend server
 
-In a separate terminal instance, from the 'StackStore' directory (not the 'backend' subdirectory):
+In a separate terminal instance, from the main 'StackStore' directory (not the 'backend' subdirectory):
 
 1. `npm start`
 2. type `y` when it tells you port 3000 is already in use (the app will use port 3001)
@@ -56,7 +62,7 @@ This app is made available open source under the terms of the [MIT License](http
 
 ## Credits
 
-Search function built on the [Stack Exchange API](https://api.stackexchange.com)
+Search function built on the [Stack Exchange API](https://api.stackexchange.com).
 
 Logo icon/favicon based on shape (colour edited for use on StackStore) by [Freepik](https://www.flaticon.com/authors/freepik), available [here](https://www.flaticon.com/free-icon/stacked-files_17640).
 
