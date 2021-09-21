@@ -37,7 +37,7 @@ class SearchResults extends React.Component {
             </div>
           </>
         ) : (
-          "No results"
+          "Loading or no results"
         )}
       </div>
     );
