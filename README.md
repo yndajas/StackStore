@@ -56,7 +56,7 @@ This app is made available open source under the terms of the [MIT License](http
 
 ## Credits
 
-Search function built on the [Stack Exchange API](https://api.stackexchange.com)
+Search function built on the [Stack Exchange API](https://api.stackexchange.com).
 
 Logo icon/favicon based on shape (colour edited for use on StackStore) by [Freepik](https://www.flaticon.com/authors/freepik), available [here](https://www.flaticon.com/free-icon/stacked-files_17640).
 
