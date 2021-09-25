@@ -19,7 +19,7 @@ class Tags extends React.Component {
     return (
       <div>
         <h2>Tags</h2>
-        {this.props.tags ? (
+        {this.props.tags && this.props.tags.length > 0 ? (
           <>
             <p>View questions by tag</p>
             <div id="tag-link-buttons">
