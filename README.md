@@ -13,6 +13,8 @@ With StackStore, you can:
 
 You can view a demo of the app over on YouTube: [youtube.com/watch?v=47qTNiLzgQU](https://www.youtube.com/watch?v=47qTNiLzgQU)</a>.
 
+[![YouTube demo](https://img.youtube.com/vi/47qTNiLzgQU/maxresdefault.jpg)](http://www.youtube.com/watch?v=47qTNiLzgQU)
+
 ## Online use
 
 The app is available to use for free at [stackstore.yndajas.co](http://stackstore.yndajas.co) (link will redirect to GitHub)!
