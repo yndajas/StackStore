@@ -57,7 +57,7 @@ In a separate terminal instance, from the main 'StackStore' directory (not the '
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at [https://github.com/yndajas/StackStore](https://github.com/yndajas/StackStore).
+Bug reports and pull requests are welcome on GitHub at [github.com/yndajas/StackStore](https://github.com/yndajas/StackStore).
 
 ## Licence
 
